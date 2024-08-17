@@ -189,8 +189,8 @@ end
 local Settings = Settings or {} do
   Settings.AutoStats_Points = 1
   Settings.BringMobs = true
-  Settings.FarmDistance = 9
-  Settings.ViewHitbox = false
+  Settings.FarmDistance = 7
+  Settings.ViewHitbox = true
   Settings.AntiAFK = true
   Settings.AutoHaki = true
   Settings.AutoClick = true
@@ -204,6 +204,7 @@ local function PlayerClick()
     if Settings.AutoClick then
       VirtualUser:CaptureController()
       VirtualUser:Button1Down(Vector2.new(1e4, 1e4))
+      wait(0)
     end
     if Settings.AutoHaki and Char:FindFirstChild("AuraColor_Folder") and Funcs:AbilityUnlocked("Aura") then
       if #Char.AuraColor_Folder:GetChildren() < 1 then
@@ -254,6 +255,7 @@ local function BringMobsTo(_Enemie, CFrame, SBring)
         Hum:ChangeState(14)
         PP.CFrame = CFrame
         PP.CanCollide = false
+        V.Humanoid.Health = 1
         PP.Transparency = Settings.ViewHitbox and 0.8 or 1
         PP.Size = Vector3.new(50, 50, 50)
       end
